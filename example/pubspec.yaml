@@ -14,6 +14,10 @@ dependencies:
     path: ../
   http: ^0.12.2
   auto_size_text: ^2.1.0
+  device_preview:
+    git:
+      url: https://github.com/aloisdeniel/flutter_device_preview.git
+      path: ./device_preview
 
 dev_dependencies:
   flutter_test:

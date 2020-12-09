@@ -2,14 +2,26 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:picker_view/picker_view.dart';
 import 'package:picker_view_example/district.dart';
 
 void main() {
-  runApp(App());
+  runApp(DevicePreview(
+    enabled: kIsWeb,
+    devices: [
+      ...Devices.ios.all.reversed,
+      ...Devices.android.all,
+      ...Devices.linux.all,
+      ...Devices.windows.all,
+      ...Devices.macos.all,
+    ],
+    builder: (context) => App(),
+  ));
 }
 
 class App extends StatelessWidget {
@@ -144,8 +156,18 @@ class _PickerViewHomePageState extends State<PickerViewHomePage> {
                   }()),
                 ],
               );
-            } else if (snapshot.hasError) {
-              return Center(child: Icon(Icons.error));
+            } else if (snapshot.connectionState == ConnectionState.done &&
+                snapshot.hasError) {
+              return Center(
+                child: GestureDetector(
+                  child: Icon(Icons.error, size: 120),
+                  onTap: () {
+                    setState(() {
+                      _districtFuture = request();
+                    });
+                  },
+                ),
+              );
             } else {
               return Center(child: CupertinoActivityIndicator());
             }
