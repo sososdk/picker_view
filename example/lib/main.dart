@@ -137,7 +137,11 @@ class _PickerViewHomePageState extends State<PickerViewHomePage> {
                         }
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: AutoSizeText(district.name, minFontSize: 6),
+                          child: AutoSizeText(
+                            district.name,
+                            minFontSize: 6,
+                            maxLines: 1,
+                          ),
                         );
                       },
                       onSelectRowChanged: (section, index) {

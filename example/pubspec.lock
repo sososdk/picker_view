@@ -67,11 +67,9 @@ packages:
   device_preview:
     dependency: "direct main"
     description:
-      path: "./device_preview"
-      ref: HEAD
-      resolved-ref: "0389ef4ed30eea99caef480aaec5dc242e536dfb"
-      url: "https://github.com/aloisdeniel/flutter_device_preview.git"
-    source: git
+      name: device_preview
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.6.2-beta"
   fake_async:
     dependency: transitive
